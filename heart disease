@@ -1,0 +1,268 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+
+
+# In[2]:
+
+
+data = pd.read_csv("C:/Users/HP/Desktop/heart.csv")
+
+
+# In[3]:
+
+
+data.head()
+
+
+# In[4]:
+
+
+data.dtypes
+
+
+# In[5]:
+
+
+data.ca.value_counts()
+
+
+# In[6]:
+
+
+data.exang.value_counts()
+
+
+# In[7]:
+
+
+data.thal.value_counts()
+
+
+# In[8]:
+
+
+data.restecg.value_counts()
+
+
+# In[9]:
+
+
+data.fbs.value_counts()
+
+
+# In[15]:
+
+
+data.slope.value_counts()
+
+
+# In[11]:
+
+
+data.isna().sum()
+
+
+# In[12]:
+
+
+# MinMax Scaler
+from sklearn.preprocessing import minmax_scale
+data[['trestbps','chol','thalach','age']] = minmax_scale(data[['trestbps','chol','thalach','age']])
+
+
+# In[13]:
+
+
+data.head()
+
+
+# In[16]:
+
+
+df1 = pd.get_dummies(data['thal'],prefix='Thal',drop_first=True)
+df2 = pd.get_dummies(data['restecg'],prefix='Restecg',drop_first=True)
+df3 = pd.get_dummies(data['cp'],prefix='CP',drop_first=True)
+df4 = pd.get_dummies(data['ca'],prefix='CA',drop_first=True)
+df5 = pd.get_dummies(data['slope'],prefix='Slope',drop_first=True)
+
+
+# In[17]:
+
+
+data = pd.concat([data,df1],axis=1)
+data.drop(['thal'],axis=1,inplace=True)
+
+
+# In[18]:
+
+
+data = pd.concat([data,df2],axis=1)
+data.drop(['restecg'],axis=1,inplace=True)
+
+
+# In[19]:
+
+
+data = pd.concat([data,df3],axis=1)
+data.drop(['cp'],axis=1,inplace=True)
+
+
+# In[20]:
+
+
+data = pd.concat([data,df4],axis=1)
+data.drop(['ca'],axis=1,inplace=True)
+
+
+# In[21]:
+
+
+data = pd.concat([data,df5],axis=1)
+data.drop(['slope'],axis=1,inplace=True)
+
+
+# In[22]:
+
+
+data.head()
+
+
+# In[25]:
+
+
+#Corelation Matrix
+df = pd.DataFrame(data)
+corr = df.corr()
+corr.style.background_gradient(cmap='coolwarm')
+
+
+# In[28]:
+
+
+data = pd.DataFrame(data)
+
+
+# In[29]:
+
+
+y = pd.DataFrame(data['target'])
+
+
+# In[30]:
+
+
+y.head()
+
+
+# In[31]:
+
+
+X = data.drop(['target'], axis=1)
+
+
+# In[32]:
+
+
+X.head()
+
+
+# In[33]:
+
+
+from sklearn.cross_validation import train_test_split
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size = 0.2, random_state = 0)
+
+
+# In[34]:
+
+
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(random_state = 0)
+classifier.fit(X_train,y_train)
+
+
+# In[35]:
+
+
+y_pred = classifier.predict(X_test)
+
+
+# In[36]:
+
+
+from sklearn.metrics import confusion_matrix
+cm = confusion_matrix(y_test,y_pred)
+
+
+# In[37]:
+
+
+cm
+
+
+# In[40]:
+
+
+from sklearn.metrics import accuracy_score
+accuracy_score(y_test, classifier.predict(X_test))
+
+
+# In[43]:
+
+
+accuracy_score(y_train, classifier.predict(X_train))
+
+
+# In[48]:
+
+
+from sklearn import svm
+clf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)
+clf.score(X_test, y_test)
+
+
+# In[57]:
+
+
+from sklearn.model_selection import cross_val_score
+clf = svm.SVC(kernel='linear', C=1)
+scores = cross_val_score(clf, X, y, cv=5)
+scores             
+
+
+# In[58]:
+
+
+print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+
+
+# In[55]:
+
+
+from sklearn.model_selection import ShuffleSplit
+n_samples = data.shape[0]
+cv = ShuffleSplit(n_splits=5, test_size=0.3, random_state=0)
+cross_val_score(classifier, X, y, cv=cv)
+
+
+# In[56]:
+
+
+from sklearn.model_selection import ShuffleSplit
+n_samples = data.shape[0]
+cv = ShuffleSplit(n_splits=5, test_size=0.3, random_state=0)
+cross_val_score(clf, X, y, cv=cv)
+
+
+# In[ ]:
+
+
+
+
