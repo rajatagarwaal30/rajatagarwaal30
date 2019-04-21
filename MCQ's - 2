@@ -1,0 +1,935 @@
+1) Which of the following is/are true about bagging trees?
+
+In bagging trees, individual trees are independent of each other
+Bagging is the method for improving the performance by aggregating the results of weak learners
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: C
+
+Both options are true. In Bagging, each individual trees are independent of each other because they consider different subset of features and samples.
+
+ 
+
+2) Which of the following is/are true about boosting trees?
+
+In boosting trees, individual weak learners are independent of each other
+It is the method for improving the performance by aggregating the results of weak learners
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: B
+
+In boosting tree individual weak learners are not independent of each other because each tree correct the results of previous tree. Bagging and boosting both can be consider as improving the base learners results.
+
+ 
+
+3) Which of the following is/are true about Random Forest and Gradient Boosting ensemble methods?
+
+Both methods can be used for classification task
+Random Forest is use for classification whereas Gradient Boosting is use for regression task
+Random Forest is use for regression whereas Gradient Boosting is use for Classification task
+Both methods can be used for regression task
+A) 1
+B) 2
+C) 3
+D) 4
+E) 1 and 4
+
+Solution: E
+
+Both algorithms are design for classification as well as regression task.
+
+ 
+
+4) In Random forest you can generate hundreds of trees (say T1, T2 …..Tn) and then aggregate the results of these tree. Which of the following is true about individual(Tk) tree in Random Forest?
+
+Individual tree is built on a subset of the features
+Individual tree is built on all the features
+Individual tree is built on a subset of observations
+Individual tree is built on full set of observations
+A) 1 and 3
+B) 1 and 4
+C) 2 and 3
+D) 2 and 4
+
+Solution: A
+
+Random forest is based on bagging concept, that consider faction of sample and faction of feature for building the individual trees.
+
+ 
+
+5) Which of the following is true about “max_depth” hyperparameter in Gradient Boosting?
+
+Lower is better parameter in case of same validation accuracy
+Higher is better parameter in case of same validation accuracy
+Increase the value of max_depth may overfit the data
+Increase the value of max_depth may underfit the data
+A) 1 and 3
+B) 1 and 4
+C) 2 and 3
+D) 2 and 4
+
+Solution: A
+
+Increase the depth from the certain value of depth may overfit the data and for 2 depth values validation accuracies are same we always prefer the small depth in final model building.
+
+ 
+
+6) Which of the following algorithm doesn’t uses learning Rate as of one of its hyperparameter?
+
+Gradient Boosting
+Extra Trees
+AdaBoost
+Random Forest
+A) 1 and 3
+B) 1 and 4
+C) 2 and 3
+D) 2 and 4
+
+Solution: D
+
+Random Forest and Extra Trees don’t have learning rate as a hyperparameter.
+
+ 
+
+7) Which of the following algorithm would you take into the consideration in your final model building on the basis of performance?
+
+Suppose you have given the following graph which shows the ROC curve for two different classification algorithms such as Random Forest(Red) and Logistic Regression(Blue)
+
+
+
+A) Random Forest
+B) Logistic Regression
+C) Both of the above
+D) None of these
+
+Solution: A
+
+Since, Random forest has largest AUC given in the picture so I would prefer Random Forest
+
+ 
+
+8) Which of the following is true about training and testing error in such case?
+
+Suppose you want to apply AdaBoost algorithm on Data D which has T observations. You set half the data for training and half for testing initially. Now you want to increase the number of data points for training T1, T2 … Tn where T1 < T2…. Tn-1 < Tn.
+
+A) The difference between training error and test error increases as number of observations increases
+B) The difference between training error and test error decreases as number of observations increases
+C) The difference between training error and test error will not change
+D) None of These
+
+Solution: B
+
+As we have more and more data, training error increases and testing error de-creases. And they all converge to the true error.
+
+ 
+
+9) In random forest or gradient boosting algorithms, features can be of any type. For example, it can be a continuous feature or a categorical feature. Which of the following option is true when you consider these types of features?
+
+A) Only Random forest algorithm handles real valued attributes by discretizing them
+B) Only Gradient boosting algorithm handles real valued attributes by discretizing them
+C) Both algorithms can handle real valued attributes by discretizing them
+D) None of these
+
+Solution: C
+
+Both can handle real valued features.
+
+ 
+
+10) Which of the following algorithm are not an example of ensemble learning algorithm?
+
+A) Random Forest
+B) Adaboost
+C) Extra Trees
+D) Gradient Boosting
+E) Decision Trees
+
+Solution: E
+
+Decision trees doesn’t aggregate the results of multiple trees so it is not an ensemble algorithm.
+
+ 
+
+11) Suppose you are using a bagging based algorithm say a RandomForest in model building. Which of the following can be true?
+
+Number of tree should be as large as possible
+You will have interpretability after using RandomForest
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: A
+
+Since Random Forest aggregate the result of different weak learners, If It is possible we would want more number of trees in model building.  Random Forest is a black box model you will lose interpretability after using it.
+
+ 
+
+Context 12-15
+
+Consider the following figure for answering the next few questions. In the figure, X1 and X2 are the two features and the data point is represented by dots (-1 is negative class and +1 is a positive class). And you first split the data based on feature X1(say splitting point is x11) which is shown in the figure using vertical line. Every value less than x11 will be predicted as positive class and greater than x will be predicted as negative class.
+
+12) How many data points are misclassified in above image?
+
+A) 1
+B) 2
+C) 3
+D) 4
+
+Solution: A
+
+Only one observation is misclassified, one negative class is showing at the left side of vertical line which will be predicting as a positive class.
+
+ 
+
+13) Which of the following splitting point on feature x1 will classify the data correctly?
+
+A) Greater than x11
+B) Less than x11
+C) Equal to x11
+D) None of above
+
+Solution: D
+
+If you search any point on X1 you won’t find any point that gives 100% accuracy.
+
+ 
+
+14) If you consider only feature X2 for splitting. Can you now perfectly separate the positive class from negative class for any one split on X2?
+
+A) Yes
+B) No
+
+Solution: B
+
+It is also not possible.
+
+ 
+
+15) Now consider only one splitting on both (one on X1 and one on X2) feature. You can split both features at any point. Would you be able to classify all data points correctly?
+
+A) TRUE
+B) FALSE
+
+Solution: B
+
+You won’t find such case because you can get minimum 1 misclassification.
+
+ 
+
+Context 16-17
+
+Suppose, you are working on a binary classification problem with 3 input features. And you chose to apply a bagging algorithm(X) on this data. You chose max_features = 2 and the n_estimators =3. Now, Think that each estimators have 70% accuracy.
+
+Note: Algorithm X is aggregating the results of individual estimators based on maximum voting
+
+16) What will be the maximum accuracy you can get?
+
+A) 70%
+B) 80%
+C) 90%
+D) 100%
+
+Solution: D
+
+Refer below table for models M1, M2 and M3.
+
+ 
+
+ 
+
+ 
+
+Actual predictions	M1	M2	M3	 Output
+1	1	0	1	1
+1	1	0	1	1
+1	1	0	1	1
+1	0	1	1	1
+1	0	1	1	1
+1	0	1	1	1
+1	1	1	1	1
+1	1	1	0	1
+1	1	1	0	1
+1	1	1	0	1
+ 
+
+ 
+
+17) What will be the minimum accuracy you can get?
+
+A) Always greater than 70%
+B) Always greater than and equal to 70%
+C) It can be less than 70%
+D) None of these
+
+Solution: C
+
+Refer below table for models M1, M2 and M3.
+
+Actual predictions	M1	M2	M3	 Output
+1	1	0	0	0
+1	1	1	1	1
+1	1	0	0	0
+1	0	1	0	0
+1	0	1	1	1
+1	0	0	1	0
+1	1	1	1	1
+1	1	1	1	1
+1	1	1	1	1
+1	1	1	1	1
+ 
+
+18) Suppose you are building random forest model, which split a node on the attribute, that has highest information gain. In the below image, select the attribute which has the highest information gain?
+
+ 
+
+
+A) Outlook
+B) Humidity
+C) Windy
+D) Temperature
+
+Solution: A
+
+Information gain increases with the average purity of subsets. So option A would be the right answer.
+
+ 
+
+19) Which of the following is true about the Gradient Boosting trees?
+
+In each stage, introduce a new regression tree to compensate the shortcomings of existing model
+We can use gradient decent method for minimize the loss function
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: C
+
+Both are true and self explanatory
+
+ 
+
+20) True-False: The bagging is suitable for high variance low bias models?
+
+A) TRUE
+B) FALSE 
+
+Solution: A
+
+The bagging is suitable for high variance low bias models or you can say for complex models.
+
+
+21) Which of the following is true when you choose fraction of observations for building the base learners in tree based algorithm?
+
+A) Decrease the fraction of samples to build a base learners will result in decrease in variance
+B) Decrease the fraction of samples to build a base learners will result in increase in variance
+C) Increase the fraction of samples to build a base learners will result in decrease in variance
+D) Increase the fraction of samples to build a base learners will result in Increase in variance
+
+Solution: A
+
+Answer is self explanatory
+
+ 
+
+Context 22-23
+
+Suppose, you are building a Gradient Boosting model on data, which has millions of observations and 1000’s of features. Before building the model you want to consider the difference parameter setting for time measurement.
+
+
+22) Consider the hyperparameter “number of trees” and arrange the options in terms of time taken by each hyperparameter for building the Gradient Boosting model?
+
+Note: remaining hyperparameters are same
+
+Number of trees = 100
+Number of trees = 500
+Number of trees = 1000
+A) 1~2~3
+B) 1<2<3
+
+C) 1>2>3
+D) None of these
+
+Solution: B
+
+The time taken by building 1000 trees is maximum and time taken by building the 100 trees is minimum which is given in solution B
+
+ 
+
+23) Now, Consider the learning rate hyperparameter and arrange the options in terms of time taken by each hyperparameter for building the Gradient boosting model?
+
+Note: Remaining hyperparameters are same
+
+1. learning rate = 1
+2. learning rate = 2
+3. learning rate = 3
+
+A) 1~2~3
+B) 1<2<3
+
+C) 1>2>3
+D) None of these
+
+Solution: A
+
+Since learning rate doesn’t affect time so all learning rates would take equal time.
+
+ 
+
+24) In greadient boosting it is important use learning rate to get optimum output. Which of the following is true abut choosing the learning rate?
+
+A) Learning rate should be as high as possible
+B) Learning Rate should be as low as possible
+C) Learning Rate should be low but it should not be very low
+D) Learning rate should be high but it should not be very high
+
+Solution: C
+
+Learning rate should be low but it should not be very low otherwise algorithm will take so long to finish the training because you need to increase the number trees.
+
+25) [True or False] Cross validation can be used to select the number of iterations in boosting; this procedure may help reduce overfitting.
+
+A) TRUE
+B) FALSE
+
+Solution: A
+
+ 
+
+26) When you use the boosting algorithm you always consider the weak learners. Which of the following is the main reason for having weak learners?
+
+To prevent overfitting
+To prevent under fitting
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: A
+
+To prevent overfitting, since the complexity of the overall learner increases at each step. Starting with weak learners implies the final classifier will be less likely to overfit.
+
+ 
+
+27) To apply bagging to regression trees which of the following is/are true in such case?
+
+We build the N regression with N bootstrap sample
+We take the average the of N regression tree
+Each tree has a high variance with low bias
+A) 1 and 2
+B) 2 and 3
+C) 1 and 3
+D) 1,2 and 3
+
+Solution: D
+
+All of the options are correct and self explanatory
+
+ 
+
+28) How to select best hyperparameters in tree based models?
+
+A) Measure performance over training data
+B) Measure performance over validation data
+C) Both of these
+D) None of these
+
+Solution: B
+
+We always consider the validation results to compare with the test result.
+
+ 
+
+29) In which of the following scenario a gain ratio is preferred over Information Gain?
+
+A) When a categorical variable has very large number of category
+B) When a categorical variable has very small number of category
+C) Number of categories is the not the reason
+D) None of these
+
+Solution: A
+
+When high cardinality problems, gain ratio is preferred over Information Gain technique.
+
+ 
+
+30) Suppose you have given the following scenario for training and validation error for Gradient Boosting. Which of the following hyper parameter would you choose in such case?
+
+Scenario	Depth	Training Error	Validation Error
+1	2	100	110
+2	4	90	105
+3	6	50	100
+4	8	45	105
+5	10	30	150
+ 
+
+A) 1
+B) 2
+C) 3
+D) 4
+
+Solution: B
+
+
+
+
+========================================================================================================================================
+
+
+
+1) [True or False] k-NN algorithm does more computation on test time rather than train time.
+
+A) TRUE
+B) FALSE 
+
+Solution: A
+
+The training phase of the algorithm consists only of storing the feature vectors and class labels of the training samples.
+
+In the testing phase, a test point is classified by assigning the label which are most frequent among the k training samples nearest to that query point – hence higher computation.
+
+ 
+
+2) In the image below, which would be the best value for k assuming that the algorithm you are using is k-Nearest Neighbor.
+
+ 
+
+
+
+A) 3
+B) 10
+C) 20
+D 50 
+Solution: B
+
+Validation error is the least when the value of k is 10. So it is best to use this value of k
+
+ 
+
+3) Which of the following distance metric can not be used in k-NN?
+
+A) Manhattan
+B) Minkowski
+C) Tanimoto
+D) Jaccard
+E) Mahalanobis
+F) All can be used 
+
+Solution: F
+
+All of these distance metric can be used as a distance metric for k-NN.
+
+
+4) Which of the following option is true about k-NN algorithm?
+
+A) It can be used for classification
+B) It can be used for regression
+C) It can be used in both classification and regression 
+
+Solution: C
+
+We can also use k-NN for regression problems. In this case the prediction can be based on the mean or the median of the k-most similar instances.
+
+
+5) Which of the following statement is true about k-NN algorithm?
+
+k-NN performs much better if all of the data have the same scale
+k-NN works well with a small number of input variables (p), but struggles when the number of inputs is very large
+k-NN makes no assumptions about the functional form of the problem being solved
+A) 1 and 2
+B) 1 and 3
+C) Only 1
+D) All of the above
+
+Solution: D
+
+The above mentioned statements are assumptions of kNN algorithm
+
+ 
+
+6) Which of the following machine learning algorithm can be used for imputing missing values of both categorical and continuous variables?
+
+A) K-NN
+B) Linear Regression
+C) Logistic Regression 
+
+Solution: A
+
+k-NN algorithm can be used for imputing missing value of both categorical and continuous variables.
+
+
+7) Which of the following is true about Manhattan distance?
+
+A) It can be used for continuous variables
+B) It can be used for categorical variables
+C) It can be used for categorical as well as continuous
+D) None of these 
+
+Solution: A
+
+Manhattan Distance is designed for calculating the distance between real valued features.
+
+
+8) Which of the following distance measure do we use in case of categorical variables in k-NN?
+
+Hamming Distance
+Euclidean Distance
+Manhattan Distance
+A) 1
+B) 2
+C) 3
+D) 1 and 2
+E) 2 and 3
+F) 1,2 and 3
+
+Solution: A
+
+Both Euclidean and Manhattan distances are used in case of continuous variables, whereas hamming distance is used in case of categorical variable.
+
+ 
+
+9) Which of the following will be Euclidean Distance between the two data point A(1,3) and B(2,3)?
+
+A) 1
+B) 2
+C) 4
+D) 8
+
+Solution: A
+
+sqrt( (1-2)^2 + (3-3)^2) = sqrt(1^2 + 0^2) = 1
+
+ 
+
+10) Which of the following will be Manhattan Distance between the two data point A(1,3) and B(2,3)?
+
+A) 1
+B) 2
+C) 4
+D) 8
+
+Solution: A
+
+sqrt( mod((1-2)) + mod((3-3))) = sqrt(1 + 0) = 1
+
+ 
+
+Context: 11-12
+
+Suppose, you have given the following data where x and y are the 2 input variables and Class is the dependent variable.
+
+ 
+
+
+ 
+Below is a scatter plot which shows the above data in 2D space.
+
+ 
+
+
+
+11) Suppose, you want to predict the class of new data point x=1 and y=1 using eucludian distance in 3-NN. In which class this data point belong to?
+
+A) + Class
+B) – Class
+
+C) Can’t say
+
+D) None of these
+
+Solution: A
+
+All three nearest point are of +class so this point will be classified as +class.
+
+ 
+
+12) In the previous question, you are now want use 7-NN instead of 3-KNN which of the following x=1 and y=1 will belong to?
+
+
+A) + Class
+B) – Class
+
+C) Can’t say
+
+Solution: B
+
+Now this point will be classified as – class because there are 4 – class and 3 +class point are in nearest circle.
+
+ 
+
+Context 13-14:
+
+Suppose you have given the following 2-class data where “+” represent a postive class and “” is represent negative class.
+
+ 
+
+
+ 
+13) Which of the following value of k in k-NN would minimize the leave one out cross validation accuracy?
+
+A) 3
+B) 5
+C) Both have same
+D) None of these
+
+Solution: B
+
+5-NN will have least leave one out cross validation error.
+
+ 
+
+14) Which of the following would be the leave on out cross validation accuracy for k=5?
+
+A) 2/14
+B) 4/14
+C) 6/14
+D) 8/14
+E) None of the above
+
+Solution: E
+
+In 5-NN we will have  10/14 leave one out cross validation accuracy.
+
+ 
+
+15) Which of the following will be true about k in k-NN in terms of Bias?
+
+A) When you increase the k the bias will be increases
+B) When you decrease the k the bias will be increases
+C) Can’t say
+D) None of these
+
+Solution: A
+
+large K means simple model, simple model always condider as high bias
+
+ 
+
+16) Which of the following will be true about k in k-NN in terms of variance?
+
+A) When you increase the k the variance will increases
+B) When you decrease the k the variance will increases
+C) Can’t say
+D) None of these
+
+Solution: B
+
+Simple model will be consider as less variance model
+
+ 
+
+17) The following two distances(Eucludean Distance and Manhattan Distance) have given to you which generally we used in K-NN algorithm. These distance are between two points A(x1,y1) and B(x2,Y2).
+
+Your task is to tag the both distance by seeing the following two graphs. Which of the following option is true about below graph ?
+
+
+
+
+A) Left is Manhattan Distance and right is euclidean Distance
+B) Left is Euclidean Distance and right is Manhattan Distance
+C) Neither left or right are a Manhattan Distance
+D) Neither left or right are a Euclidian Distance
+Solution: B
+
+Left is the graphical depiction of how euclidean distance works, whereas right one is of Manhattan distance.
+
+ 
+
+18) When you find noise in data which of the following option would you consider in k-NN?
+
+A) I will increase the value of k
+B) I will decrease the value of k
+C) Noise can not be dependent on value of k
+D) None of these
+
+Solution: A
+
+To be more sure of which classifications you make, you can try increasing the value of k.
+
+ 
+
+19) In k-NN it is very likely to overfit due to the curse of dimensionality. Which of the following option would you consider to handle such problem?
+
+Dimensionality Reduction
+Feature selection
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: C
+
+In such case you can use either dimensionality reduction algorithm or the feature selection algorithm
+
+ 
+
+20) Below are two statements given. Which of the following will be true both statements?
+
+k-NN is a memory-based approach is that the classifier immediately adapts as we collect new training data.
+The computational complexity for classifying new samples grows linearly with the number of samples in the training dataset in the worst-case scenario.
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: C
+
+Both are true and self explanatory
+
+ 
+
+21) Suppose you have given the following images(1 left, 2 middle and 3 right), Now your task is to find out the value of k in k-NN in each image where k1 is for 1st, k2 is for 2nd and k3 is for 3rd figure.
+
+
+
+A) k1 > k2> k3
+B) k1<k2
+C) k1 = k2 = k3
+D) None of these
+Solution: D
+
+Value of k is highest in k3, whereas in k1 it is lowest
+
+ 
+
+22) Which of the following value of k in the following graph would you give least leave one out cross validation accuracy?
+
+
+
+A) 1
+B) 2
+C) 3
+D) 5
+Solution: B
+
+If you keep the value of k as 2, it gives the lowest cross validation accuracy. You can try this out yourself.
+
+ 
+
+23) A company has build a kNN classifier that gets 100% accuracy on training data. When they deployed this model on client side it has been found that the model is not at all accurate. Which of the following thing might gone wrong?
+
+Note: Model has successfully deployed and no technical issues are found at client side except the model performance
+
+A) It is probably a overfitted model
+B) It is probably a underfitted model
+C) Can’t say
+D) None of these
+
+Solution: A
+
+In an overfitted module, it seems to be performing well on training data, but it is not generalized enough to give the same results on a new data.
+
+ 
+
+24) You have given the following 2 statements, find which of these option is/are true in case of k-NN?
+
+In case of very large value of k, we may include points from other classes into the neighborhood.
+In case of too small value of k the algorithm is very sensitive to noise
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: C
+
+Both the options are true and are self explanatory.
+
+ 
+
+25) Which of the following statements is true for k-NN classifiers?
+
+A) The classification accuracy is better with larger values of k
+B) The decision boundary is smoother with smaller values of k
+C) The decision boundary is linear
+D) k-NN does not require an explicit training step
+
+Solution: D
+
+Option A: This is not always true. You have to ensure that the value of k is not too high or not too low.
+
+Option B: This statement is not true. The decision boundary can be a bit jagged
+
+Option C: Same as option B
+
+Option D: This statement is true
+
+ 
+
+26) True-False: It is possible to construct a 2-NN classifier by using the 1-NN classifier?
+
+A) TRUE
+B) FALSE
+
+Solution: A
+
+You can implement a 2-NN classifier by ensembling 1-NN classifiers
+
+ 
+
+27) In k-NN what will happen when you increase/decrease the value of k?
+
+A) The boundary becomes smoother with increasing value of K
+B) The boundary becomes smoother with decreasing value of K
+C) Smoothness of boundary doesn’t dependent on value of K
+D) None of these
+
+Solution: A
+
+The decision boundary would become smoother by increasing the value of K
+
+ 
+
+28) Following are the two statements given for k-NN algorthm, which of the statement(s)
+
+is/are true?
+
+We can choose optimal value of k with the help of cross validation
+Euclidean distance treats each feature as equally important
+A) 1
+B) 2
+C) 1 and 2
+D) None of these
+
+Solution: C
+
+Both the statements are true
+
+ 
+
+Context 29-30:
+
+Suppose, you have trained a k-NN model and now you want to get the prediction on test data. Before getting the prediction suppose you want to calculate the time taken by k-NN for predicting the class for test data.
+Note: Calculating the distance between 2 observation will take D time.
+
+29) What would be the time taken by 1-NN if there are N(Very large) observations in test data?
+
+A) N*D
+B) N*D*2
+C) (N*D)/2
+D) None of these
+
+Solution: A
+
+The value of N is very large, so option A is correct
+
+ 
+
+30) What would be the relation between the time taken by 1-NN,2-NN,3-NN.
+
+A) 1-NN >2-NN >3-NN
+B) 1-NN < 2-NN < 3-NN
+C) 1-NN ~ 2-NN ~ 3-NN
+D) None of these
+
+Solution: C
+
+====================================================================================================================================
+
+
