@@ -1,0 +1,60 @@
+import pandas as pd
+df=pd.read_csv('heart.csv')
+df.head(10)
+df.columns
+numerical = df.drop(['sex','cp','fbs','restecg','exang','slope','ca','thal','target'],1)
+numerical.head(10)
+categorical=df[['sex','cp','fbs','restecg','exang','slope','ca','thal']]
+categorical.head(10)
+y=df['target']
+
+for col in ['cp', 'restecg', 'slope', 'ca','thal']:
+    categorical[col] = categorical[col].astype('category')
+    
+categorical.dtypes
+categorical=pd.get_dummies(categorical)
+categorical.head(10)
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+cols = list(numerical)
+numerical = scaler.fit_transform(numerical)
+numerical = pd.DataFrame(numerical,columns=cols)
+
+numerical.head(10)
+X=pd.concat([numerical,categorical],1)
+X.head(10)
+X.dtypes
+
+from sklearn.linear_model import LogisticRegression
+lr=LogisticRegression()
+from sklearn.model_selection import cross_val_score
+cross_val_score(lr,X,y,cv=10).mean()
+
+from sklearn.tree import DecisionTreeClassifier
+clf=DecisionTreeClassifier()
+cross_val_score(clf,X,y,cv=10).mean()
+import numpy as np
+params= {"n_neighbors": np.arange(1,10)}
+
+from sklearn.neighbors import KNeighborsClassifier
+knn= KNeighborsClassifier()
+
+from sklearn.model_selection import GridSearchCV
+knn_cv=GridSearchCV(knn,param_grid=params)
+knn_cv.fit(X,y)
+knn_cv.best_score_
+
+
+### LOGISTIC CV
+# Create regularization penalty space
+penalty = ['l1', 'l2']
+
+# Create regularization hyperparameter space
+C = np.logspace(0, 4, 10)
+
+# Create hyperparameter options
+hyperparameters = dict(C=C, penalty=penalty)
+lr_cv = GridSearchCV(lr, hyperparameters, cv=10, verbose=0)
+lr_cv.fit(X,y)
+lr_cv.best_score_
