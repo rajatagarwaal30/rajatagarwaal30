@@ -1,0 +1,71 @@
+import os
+os.getcwd()
+import pandas as pd
+df= pd.read_csv("ML_one.csv")
+df.head(5)
+df.columns
+df=df.drop(['No','EMPLOYER_NAME','SOC_NAME'],1)
+df.head(10)
+df=df.drop(['JOB_TITLE','WORKSITE'],1)
+df=df.dropna()
+df.isna().sum()
+df.shape
+import seaborn as sns
+sns.pairplot(df)
+import numpy as np
+df['YEAR']=np.where(df['YEAR'] ==2015,0,1)
+df['FULL_TIME_POSITION']=np.where(df['FULL_TIME_POSITION'] == 'Y',1,0)
+df.head(5)
+import numpy as np
+numerical = df.select_dtypes(include=np.number)
+categorical=df.select_dtypes(exclude=np.number)
+numerical.head(5)
+df_num_1=numerical.drop(['FULL_TIME_POSITION','YEAR'],1)
+df_num_1.head(5)
+df_num_2=df[['FULL_TIME_POSITION','YEAR']]
+df_num_2.head(5)
+
+from sklearn.preprocessing import MinMaxScaler
+scalar=MinMaxScaler()
+col_names=list(df_num_1)
+df_num_1=scalar.fit_transform(df_num_1)
+df_num_1=pd.DataFrame(df_num_1)
+df_num_1.columns=col_names
+df_num_1.head(5)
+num=pd.concat([df_num_1,df_num_2],1)
+num.head(5)
+df=pd.concat([num,categorical],1)
+df.head(10)
+df=df.dropna()
+df['CASE_STATUS'] = df['CASE_STATUS'].replace(['CERTIFIED-WITHDRAWN'], 0)
+df['CASE_STATUS'] = df['CASE_STATUS'].replace(['WITHDRAWN'], 1)
+df['CASE_STATUS'] = df['CASE_STATUS'].replace(['CERTIFIED'], 2)
+df['CASE_STATUS'] = df['CASE_STATUS'].replace(['DENIED'], 3)
+df.head(10)
+X=df.drop(["CASE_STATUS"],1)
+y=df["CASE_STATUS"]
+
+from sklearn.model_selection import train_test_split as tts
+X_train, X_test, y_train, y_test = tts(X, y, test_size=0.33, random_state=42)
+from sklearn.model_selection import cross_val_score
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier(random_state=42)
+clf.fit(X_train,y_train)
+y_pred=clf.predict(X_test)
+y_pred.shape
+from sklearn.metrics import accuracy_score
+accuracy_score(y_pred,y_test)
+
+import numpy as np
+params = {"criterion":["gini", "entropy"],
+        "max_depth":np.arange(1,20), 
+         "min_samples_split":np.arange(0.01,0.13, 0.01)}
+
+from  sklearn.model_selection import GridSearchCV
+dtc=DecisionTreeClassifier()
+dtc_cv = GridSearchCV(dtc, param_grid=params, cv = 10)
+dtc_cv.fit(X,y)
+dtc_cv.best_params_
+dtc_cv.best_score_
+ok = pd.Series(dtc_cv.best_estimator_.feature_importances_, index = list(X))
+ok.sort_values(ascending=True).plot(kind = "barh")
