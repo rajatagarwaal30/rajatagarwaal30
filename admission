@@ -1,0 +1,52 @@
+df = pd.read_csv('Admission.csv')
+df.head(10)
+df= df.drop(['Serial No.'],1)
+df.head(10)
+df.columns
+y=df['Chance of Admit ']
+X=df.drop(['Chance of Admit '],1)
+X.head(2)
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+cols = list(X)
+X = scaler.fit_transform(X)
+X = pd.DataFrame(X,columns=cols)
+
+X.head(10)
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt   
+import seaborn as sns
+%matplotlib inline
+sns.pairplot(X)
+
+from sklearn.model_selection import train_test_split as tts
+X_train, X_test, y_train, y_test = tts(X, y, test_size=0.33, random_state=42)
+
+from sklearn.linear_model import LinearRegression
+lg=LinearRegression()
+lg.fit(X_train,y_train)
+lg.score(X_test,y_test)
+
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import cross_val_score
+rr=Ridge(alpha=0.01)
+rr.fit(X_train,y_train)
+rr.score(X_test, y_test)
+
+from sklearn.linear_model import RidgeCV
+clf=RidgeCV()
+clf = RidgeCV(alphas=[1e-3, 1e-2, 1e-1, 1]).fit(X, y)
+clf.score(X,y)
+
+from sklearn.neighbors import KNeighborsRegressor
+knn =KNeighborsRegressor()
+from sklearn.model_selection import cross_val_score,GridSearchCV
+cross_val_score(knn,X,y,cv=10).mean()
+
+
+from sklearn.tree import DecisionTreeRegressor
+dtc=DecisionTreeRegressor()
+cross_val_score(dtc,X,y,cv=10).mean()
